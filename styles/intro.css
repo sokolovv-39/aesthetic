@@ -1,0 +1,120 @@
+.SocialNets {
+  display: flex;
+  gap: 23px;
+}
+
+.IntroComputer {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  margin-top: 41px;
+  margin-bottom: 100px;
+}
+@media (max-device-width: 1360px) {
+  .IntroComputer {
+    margin-bottom: -3px;
+  }
+}
+.IntroComputer .Desc {
+  padding-left: 40px;
+  align-self: center;
+  justify-self: right;
+}
+.IntroComputer .Desc .About h1 {
+  font-family: "Lovelace";
+  font-size: 100px;
+  font-stretch: normal;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  color: #000;
+  line-height: 90px;
+  margin-bottom: 20px;
+}
+.IntroComputer .Desc .About p {
+  font-family: "Montserrat";
+  font-size: 18px;
+  font-stretch: normal;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  color: #000;
+}
+.IntroComputer .Desc .Connection {
+  display: flex;
+  margin-top: 48px;
+  column-gap: 23px;
+}
+.IntroComputer .Desc .Connection .Call {
+  width: 270px;
+  font-family: "Montserrat";
+  font-size: 20px;
+  font-stretch: normal;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 600;
+  color: #000;
+  background-color: white;
+  border: 1px solid #000;
+  border-radius: 5px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-device-width: 1185px) {
+  .IntroComputer .IntroPhoto {
+    width: 400px;
+  }
+}
+
+.IntroMobile {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+}
+.IntroMobile .About h1 {
+  font-family: "Lovelace";
+  font-size: 50px;
+  font-stretch: normal;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  color: #000;
+  text-align: center;
+}
+.IntroMobile .About p {
+  font-family: "Montserrat";
+  font-size: 18px;
+  font-stretch: normal;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  color: #000;
+  text-align: center;
+}
+.IntroMobile .Connection .Call {
+  margin: 0 auto;
+  margin-top: 15px;
+  width: 270px;
+  font-family: "Montserrat";
+  font-size: 20px;
+  font-stretch: normal;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 600;
+  color: #000;
+  background-color: white;
+  border: 1px solid #000;
+  border-radius: 5px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+}
+.IntroMobile .Connection .SocialNetsMobile {
+  margin: 0 auto;
+  width: fit-content;
+  margin-top: 15px;
+}/*# sourceMappingURL=intro.css.map */
