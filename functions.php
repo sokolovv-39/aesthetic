@@ -9,29 +9,17 @@ add_action('wp_enqueue_scripts', 'aesthetic_scripts_styles');
 
 function aesthetic_scripts_styles()
 {
+wp_enqueue_style('swiper-styles', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css');
+    $css_path = get_template_directory_uri() . '/dist/css/all.css';
+    wp_enqueue_style('all-css', $css_path, [], false);
 
-    wp_enqueue_style('swiper-styles', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css');
-    $css_files = glob(get_template_directory() . '/styles/*.css');
-    foreach ($css_files as $file) {
-        $file_name = basename($file);
-        $version = strval(filectime(get_template_directory_uri() . '/styles/' . $file_name));
-        echo $version;
-        wp_enqueue_style($file_name, get_template_directory_uri() . '/styles/' . $file_name, [], $version);
-    }
-    
-    wp_enqueue_style('lovelace-font', get_template_directory_uri() . '/assets/fonts/Lovelace/stylesheet.css');
-    wp_enqueue_style('montserrat-font', get_template_directory_uri() . '/assets/fonts/Montserrat/stylesheet.css');
-    wp_enqueue_style('windsong-font', get_template_directory_uri() . '/assets/fonts/WindSong/stylesheet.css');
-
-    wp_enqueue_script('swiper', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', [], false, true);
-    $js_files = glob(get_template_directory() . '/scripts/*.js');
-    foreach ($js_files as $file) {
-        $file_name = basename($file);
-        $version = strval(filectime(get_template_directory_uri() . '/scripts/' . $file_name));
-        wp_enqueue_script($file_name, get_template_directory_uri() . '/scripts/' . $file_name, ['swiper'], $version, [
-            'in_footer' => true
-        ]);
-    }
+    wp_enqueue_script('swiper', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', [], false, [
+        'in_footer' => true
+    ]);
+    $js_path = get_template_directory_uri() . '/dist/js/all.js';
+    wp_enqueue_script('all-js', $js_path, [], false, [
+        'in_footer' => true
+    ]);
 }
 
 add_action('customize_register', 'theme_customize_register', 11);

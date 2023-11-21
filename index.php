@@ -51,7 +51,7 @@
           </div>
         </div>
       </div>
-      <img src="<?php echo get_template_directory_uri() . '/assets/images/intro_photo.webp' ?>" alt="Брови, косметология, пошив нижнего белья" class="IntroPhoto" />
+      <img src="<?php echo get_template_directory_uri() . '/dist/images/intro_photo.webp' ?>" alt="Брови, косметология, пошив нижнего белья" class="IntroPhoto" />
     </div>
     <div class="IntroMobile">
       <div class="About">
@@ -104,16 +104,16 @@
     </div>
   </div>
   <div class="Slider" id="about">
-    <div class="SliderComputer">
-      <?php
-      $slider = get_posts(array(
-        'post_type' => 'slider'
-      ));
+    <?php
+    $slider = get_posts(array(
+      'post_type' => 'slider'
+    ));
 
-      if (count($slider) === 0) {
-        echo 'Нет постов';
-      }
-      ?>
+    if (count($slider) === 0) {
+      echo 'Нет постов';
+    }
+    ?>
+    <div class="SliderComputer">
       <div class="swiper">
         <div class="swiper-wrapper">
           <?php foreach ($slider as $post) {
@@ -124,7 +124,7 @@
                 <h2><?php the_title() ?></h2>
                 <p><?php the_content() ?></p>
               </div>
-          </div>
+            </div>
           <?php }
           wp_reset_postdata();
           ?>
@@ -136,69 +136,25 @@
       </div>
     </div>
     <div class="SliderMobile">
-    <div class="swiper">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <img src="<?php echo get_template_directory_uri() . '/assets/images/slider/about.webp' ?>" alt="<?php echo strtolower(get_theme_mod('studio_name_settings')) ?>" />
-          <div class="Desc">
-            <h2>О нас</h2>
-            <p>
-              Добро пожаловать в Aesthetic Studio! Мы поможем
-              подчеркнуть вашу естественную красоту и создать
-              неповторимый образ. Наша команда мастеров с радостью
-              поможет выбрать подходящие услуги и даст индивидуальные
-              рекомендации. В нашей студии вы найдете уютную атмосферу и
-              дружелюбную команду, которая сделает все возможное, чтобы
-              вы остались довольны результатом.
-            </p>
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <?php
+            foreach($slider as $post) {
+              setup_postdata($post);
+          ?>
+          <div class="swiper-slide">
+            <?php the_post_thumbnail() ?>
+            <div class="Desc">
+              <h2><?php the_title() ?></h2>
+              <p><?php the_content() ?></p>
+            </div>
           </div>
+          <?php } 
+          wp_reset_postdata()?>
         </div>
-        <div class="swiper-slide">
-          <img src="<?php echo get_template_directory_uri() . '/assets/images/slider/eyebrows.webp' ?>" alt="Брови и ресницы" />
-          <div class="Desc">
-            <h2>Брови и ресницы</h2>
-            <p>
-              Наша студия предлагает вам услуги бровиста и ламимейкера,
-              тут вы можете сделать крутые бровки и ресницы и побыть в
-              приятной атмосфере. Брови-наш характер. Наша мимика в
-              первую очередь связана с бровями. И люди с большей
-              вероятностью чаще обращают внимание на брови. А красивые
-              ресницы подчеркнут твой образ и я в этом тебе с радостью
-              помогу.
-            </p>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <img src="<?php echo get_template_directory_uri() . '/assets/images/slider/cosmetology.webp' ?>" alt="Косметология" />
-          <div class="Desc">
-            <h2>Косметология</h2>
-            <p>
-              Я косметолог-эстетист студии красоты Aesthetic. В нашей
-              уютной студии доступны разнообразные процедуры: чистка
-              лица, пилинги, лечение акне, избавление от пигментных
-              пятен и постакне, сужение пор, уменьшение морщин, лифтинг
-              и многое другое. Цены приятные, скидка на первое посещение
-              Приходите за здоровой и сияющей кожей!
-            </p>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <img src="<?php echo get_template_directory_uri() . '/assets/images/slider/lingerie.webp' ?>" alt="Пошив нижнего белья" />
-          <div class="Desc">
-            <h2>Нижнее белье</h2>
-            <p>
-              Уникальное нижнее белье, созданное только для вас! Лучший
-              салон нижнего белья приглашает вас стать обладателем самых
-              эксклюзивных моделей. Мы готовы позаботиться о вашем
-              комфорте и уверенности, предлагая пошив белья, идеально
-              соответствующего вашим меркам.
-            </p>
-          </div>
-        </div>
+        <div class="swiper-pagination"></div>
       </div>
-      <div class="swiper-pagination"></div>
     </div>
-  </div>
   </div>
   <?php
   $index = 0;
@@ -328,20 +284,20 @@
   <div class="Feedback">
     <div class='FeedbackComp'>
       <h3>Отзывы</h3>
-      <img src="<?php echo get_template_directory_uri() . '/assets/images/Feedback.webp' ?>" alt="Отзывы" />
+      <img src="<?php echo get_template_directory_uri() . '/dist/images/Feedback.webp' ?>" alt="Отзывы" />
     </div>
   </div>
   <div class="FeedbackMobile">
     <h3>Отзывы</h3>
     <div class=Photos>
-      <img src="<?php echo get_template_directory_uri() . '/assets/images/mobile_feedback/f1.webp' ?>" alt="Нижнее белье" />
-      <img src="<?php echo get_template_directory_uri() . '/assets/images/mobile_feedback/f2.webp' ?>" alt="Нижнее белье" />
-      <img src="<?php echo get_template_directory_uri() . '/assets/images/mobile_feedback/f3.webp' ?>" alt="Нижнее белье" />
-      <img src="<?php echo get_template_directory_uri() . '/assets/images/mobile_feedback/f4.webp' ?>" alt="Нижнее белье" />
-      <img src="<?php echo get_template_directory_uri() . '/assets/images/mobile_feedback/f5.webp' ?>" alt="Нижнее белье" />
-      <img src="<?php echo get_template_directory_uri() . '/assets/images/mobile_feedback/f6.webp' ?>" alt="Нижнее белье" />
-      <img src="<?php echo get_template_directory_uri() . '/assets/images/mobile_feedback/f7.webp' ?>" alt="Нижнее белье" />
-      <img src="<?php echo get_template_directory_uri() . '/assets/images/mobile_feedback/f8.webp' ?>" alt="Нижнее белье" />
+      <img src="<?php echo get_template_directory_uri() . '/dist/images/f1.webp' ?>" alt="Нижнее белье" />
+      <img src="<?php echo get_template_directory_uri() . '/dist/images/f2.webp' ?>" alt="Нижнее белье" />
+      <img src="<?php echo get_template_directory_uri() . '/dist/images/f3.webp' ?>" alt="Нижнее белье" />
+      <img src="<?php echo get_template_directory_uri() . '/dist/images/f4.webp' ?>" alt="Нижнее белье" />
+      <img src="<?php echo get_template_directory_uri() . '/dist/images/f5.webp' ?>" alt="Нижнее белье" />
+      <img src="<?php echo get_template_directory_uri() . '/dist/images/f6.webp' ?>" alt="Нижнее белье" />
+      <img src="<?php echo get_template_directory_uri() . '/dist/images/f7.webp' ?>" alt="Нижнее белье" />
+      <img src="<?php echo get_template_directory_uri() . '/dist/images/f8.webp' ?>" alt="Нижнее белье" />
     </div>
   </div>
   <div class="Contacts" id="contacts">
