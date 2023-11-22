@@ -65,6 +65,11 @@ function watchTask() {
     gulp.parallel(imageMin, cssMinConcat, jsMinConcat, copyFonts, copyTemplate))
 }
 
-export default gulp.series(gulp.parallel(imageMin, cssMinConcat, jsMinConcat, copyFonts, copyTemplate),
-    watchTask
-)
+export default function build(cb) {
+    return gulp.parallel(imageMin, cssMinConcat, jsMinConcat, copyFonts, copyTemplate)(cb)
+}
+
+export function watch(cb) {
+    return gulp.series(gulp.parallel(imageMin, cssMinConcat, jsMinConcat, copyFonts, copyTemplate),
+    watchTask)(cb)
+}
