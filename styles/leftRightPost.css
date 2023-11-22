@@ -1,0 +1,88 @@
+.LeftRightPost {
+  scroll-margin: 50px;
+}
+
+.LeftRightPostComp {
+  margin-top: 60px;
+  margin-bottom: 100px;
+  display: flex;
+  padding: 0px 36px 0px 36px;
+  column-gap: 24px;
+}
+@media (max-device-width: 1161px) {
+  .LeftRightPostComp {
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+.LeftRightPostComp .MainPhoto {
+  width: 343px;
+  height: 428px;
+}
+.LeftRightPostComp .Desc h2 {
+  font-family: "Lovelace";
+  font-size: 36px;
+  font-stretch: normal;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  color: #000;
+  margin-bottom: 10px;
+}
+.LeftRightPostComp .Desc .Text p {
+  font-family: "Montserrat";
+  font-size: 18px;
+  font-stretch: normal;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  color: #000;
+  margin-top: 10px;
+}
+.LeftRightPostComp .Desc .Text li {
+  font-family: "Montserrat";
+  font-size: 18px;
+  font-stretch: normal;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  color: #000;
+  margin-top: 10px;
+  list-style-type: none;
+}
+.LeftRightPostComp .Desc .Price {
+  margin-top: 10px;
+  font-family: "Montserrat";
+  font-size: 20px;
+  font-stretch: normal;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 600;
+  color: #000;
+  border-bottom: 1px solid #eed9c5;
+  padding-bottom: 2px;
+  width: fit-content;
+}
+.LeftRightPostComp .SamePhotos {
+  display: grid;
+  grid-template-columns: 180px 180px;
+  grid-template-rows: 180px 180px;
+  gap: 14px;
+}
+.LeftRightPostComp .SamePhotos img {
+  width: 100%;
+  height: 100%;
+}
+
+.LeftRightPostMobile .swiper {
+  --swiper-pagination-color: #eed9c5;
+  padding-bottom: 35px;
+}
+.LeftRightPostMobile .swiper .swiper-slide {
+  display: flex;
+  justify-content: center;
+}
+.LeftRightPostMobile .swiper .swiper-slide img {
+  width: 300px;
+  height: 300px;
+}/*# sourceMappingURL=leftRightPost.css.map */

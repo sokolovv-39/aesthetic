@@ -1,0 +1,113 @@
+.StandardPost {
+  scroll-margin: 20px;
+}
+
+.StandardPostComp {
+  padding: 0px 36px 0px 36px;
+  margin-top: 100px;
+  display: flex;
+  column-gap: 40px;
+}
+@media (max-device-width: 1360px) {
+  .StandardPostComp {
+    margin-top: 37px;
+  }
+}
+@media (max-device-width: 1280px) {
+  .StandardPostComp {
+    display: block;
+  }
+}
+.StandardPostComp .PriceList {
+  flex: 1 1 50%;
+}
+@media (max-device-width: 1280px) {
+  .StandardPostComp .PriceList {
+    display: block;
+  }
+}
+.StandardPostComp .PriceList h2 {
+  font-family: "Lovelace";
+  font-size: 36px;
+  font-stretch: normal;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  color: #000;
+  margin-bottom: 14px;
+}
+.StandardPostComp .PriceList ul li {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #EED9C5;
+  padding: 9px 0;
+}
+.StandardPostComp .PriceList ul li h3 {
+  font-family: "Montserrat";
+  font-size: 18px;
+  font-stretch: normal;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  color: #000;
+}
+@media (max-device-width: 665px) {
+  .StandardPostComp .PriceList ul li h3 {
+    flex-basis: 70%;
+  }
+}
+.StandardPostComp .PriceList ul li p {
+  font-family: "Montserrat";
+  font-size: 18px;
+  font-stretch: normal;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 600;
+  color: #000;
+}
+.StandardPostComp .PriceList p {
+  font-family: "Montserrat";
+  font-size: 18px;
+  font-stretch: normal;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  color: #000;
+}
+.StandardPostComp .Photos {
+  flex: 1 1 50%;
+  display: flex;
+  column-gap: 40px;
+}
+@media (max-device-width: 1280px) {
+  .StandardPostComp .Photos {
+    display: none;
+  }
+}
+.StandardPostComp .BigPhoto {
+  width: 300px;
+  height: 300px;
+}
+.StandardPostComp .SmallPhoto {
+  width: 190px;
+  height: 190px;
+}
+
+.StandardPostMobile .swiper {
+  padding: 33px 0;
+  display: none;
+  --swiper-pagination-color: #EED9C5;
+}
+@media (max-device-width: 1280px) {
+  .StandardPostMobile .swiper {
+    display: block;
+  }
+}
+.StandardPostMobile .swiper .swiper-slide {
+  display: flex;
+  justify-content: center;
+}
+.StandardPostMobile .swiper .swiper-slide img {
+  width: 300px;
+  height: 300px;
+}
