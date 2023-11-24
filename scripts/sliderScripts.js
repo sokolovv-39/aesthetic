@@ -1,6 +1,8 @@
 window.addEventListener("resize", sliderLogic)
 sliderLogic()
 
+let isFirstSliderChange = true
+
 function sliderLogic() {
     if (window.screen.availWidth >= 1360) {
         document.querySelector('.SliderComputer').style.display = 'block'
@@ -16,6 +18,22 @@ function sliderLogic() {
                 prevEl: '.swiper-button-prev',
             },
 
+            on: {
+                slideChange: function() {
+                    if (isFirstSliderChange) {
+                        let ee = setInterval(function () {
+                            if (typeof window.ym != 'undefined') {
+                                ym(95629810,'reachGoal','slider-scroll')
+                                ym(95629805,'reachGoal', 'slider-scroll')
+                                clearInterval(ee)
+                            }
+                        }, 1000)
+                        isFirstChange = false
+                        return true
+                    }
+                }
+            },
+
             slidesPerView: 2,
             spaceBetween: 100
         })
@@ -29,7 +47,23 @@ function sliderLogic() {
 
             pagination: {
                 el: '.swiper-pagination'
-            }
+            },
+
+            on: {
+                slideChange: function() {
+                    if (isFirstSliderChange) {
+                        let ee = setInterval(function () {
+                            if (typeof window.ym != 'undefined') {
+                                ym(95629810,'reachGoal','slider-scroll')
+                                ym(95629805,'reachGoal', 'slider-scroll')
+                                clearInterval(ee)
+                            }
+                        }, 1000)
+                        isFirstChange = false
+                        return true
+                    }
+                }
+            },
         })
     }
 }

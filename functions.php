@@ -13,20 +13,18 @@ function aesthetic_scripts_styles()
 {
     global $is_Server;
 
-    function detectVersion($file_path) {
+    function detectVersion($file_path)
+    {
         global $is_Server;
         if ($is_Server) {
             return filectime($file_path);
-        }
-        else return false;
+        } else return false;
     }
-
     wp_enqueue_style('swiper-styles', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css');
     $css_path = null;
     if ($is_Server) {
         $css_path = get_template_directory_uri() . '/assets/css/all.css';
-    }
-    else {
+    } else {
         $css_path = get_template_directory_uri() . '/dist/assets/css/all.css';
     }
     wp_enqueue_style('all-css', $css_path, [], detectVersion($css_path));
@@ -36,8 +34,7 @@ function aesthetic_scripts_styles()
     $js_path = null;
     if ($is_Server) {
         $js_path = get_template_directory_uri() . '/assets/js/all.js';
-    }
-    else {
+    } else {
         $js_path = get_template_directory_uri() . '/dist/assets/js/all.js';
     }
     wp_enqueue_script('all-js', $js_path, [], detectVersion($js_path), [
@@ -215,7 +212,7 @@ function theme_customize_register(WP_Customize_Manager $wp_customize)
 
     $wp_customize->remove_panel('nav_menus');
     $wp_customize->remove_panel('themes');
-    
+
     $wp_customize->remove_section('custom_css');
 }
 
@@ -278,4 +275,18 @@ function slider_limit_upload_images($file)
     }
 
     return $file;
+}
+
+add_action( 'login_head', 'my_custom_login_logo' );
+function my_custom_login_logo(){
+
+	echo '
+	<style type="text/css">
+	h1 a {  background-image:url('.get_bloginfo('template_directory').'/assets/images/AElogo.svg) !important;  
+            background-size: 241px !important;
+            background-position: bottom !important;
+            width: 254px !important;
+    }
+	</style>
+	';
 }

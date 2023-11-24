@@ -2,6 +2,7 @@
 <html lang="ru">
 
 <head>
+<link rel="canonical" href="https://aesthetic-beauty.ru">
 <meta name="yandex-verification" content="3245642d5bf69829" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

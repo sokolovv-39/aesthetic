@@ -1,7 +1,7 @@
 <?php get_header();
 $is_Server = strpos($_SERVER['HTTP_HOST'], 'local') === false ? true : false;
-$img_Directory = $is_Server ? get_template_directory_uri() . 'assets/images' :
-get_template_directory_uri() . '/dist/assets/images';
+$img_Directory = $is_Server ? get_template_directory_uri() . '/assets/images' :
+  get_template_directory_uri() . '/dist/assets/images';
 ?>
 <main>
   <div class="IntroBlock">
@@ -143,18 +143,18 @@ get_template_directory_uri() . '/dist/assets/images';
       <div class="swiper">
         <div class="swiper-wrapper">
           <?php
-            foreach($slider as $post) {
-              setup_postdata($post);
+          foreach ($slider as $post) {
+            setup_postdata($post);
           ?>
-          <div class="swiper-slide">
-            <?php the_post_thumbnail() ?>
-            <div class="Desc">
-              <h2><?php the_title() ?></h2>
-              <p><?php the_content() ?></p>
+            <div class="swiper-slide">
+              <?php the_post_thumbnail() ?>
+              <div class="Desc">
+                <h2><?php the_title() ?></h2>
+                <p><?php the_content() ?></p>
+              </div>
             </div>
-          </div>
-          <?php } 
-          wp_reset_postdata()?>
+          <?php }
+          wp_reset_postdata() ?>
         </div>
         <div class="swiper-pagination"></div>
       </div>
@@ -167,10 +167,10 @@ get_template_directory_uri() . '/dist/assets/images';
       $image_count = count($image_array);
       $menu_anchor = get_post_meta(get_the_ID(), 'menu_anchor', true);
       if ($image_count !== 5) {
-      $isCustomDesign = false;
-      if ($image_count === 3) {
-        $isCustomDesign = true;
-      }
+        $isCustomDesign = false;
+        if ($image_count === 3) {
+          $isCustomDesign = true;
+        }
   ?>
         <div class="StandardPost" id="<?php echo esc_attr($menu_anchor) ?>">
           <div class="StandardPostComp">
@@ -182,7 +182,7 @@ get_template_directory_uri() . '/dist/assets/images';
                 $custom_fields = get_post_custom();
                 foreach ($custom_fields as $key => $values) {
                   if (strpos($key, '_') !== 0) {
-                    if ($key !== 'menu' && $key !== 'post_images' && $key !== 'apvc_active_counter' && $key !== 'count_start_from' && $key !== 'widget_label' && $key!== 'menu_anchor') { ?>
+                    if ($key !== 'menu' && $key !== 'post_images' && $key !== 'apvc_active_counter' && $key !== 'count_start_from' && $key !== 'widget_label' && $key !== 'menu_anchor') { ?>
                       <li class="Service">
                         <h3><?php echo $key ?></h3>
                         <p><?php echo $values[0] ?> &#x20bd;</p>
@@ -193,28 +193,39 @@ get_template_directory_uri() . '/dist/assets/images';
               </ul>
             </div>
             <div class="Photos">
-              <?php 
-                if ($isCustomDesign) { ?>
-                  <img src="<?php echo $image_array[0] ?>" class="BigPhoto">
-                  <img src="<?php echo $image_array[1] ?>" class="SmallPhoto">
-                  <img src="<?php echo $image_array[2] ?>" class="SmallPhoto">
-                <?php } 
-                else { 
-                  foreach($image_array as $image) {
-                  ?>
-                    <img src="<?php echo $image ?>" class="SmallPhoto">
-                <?php } }?>
-                
+              <?php
+              if ($isCustomDesign) {
+                $image_count = 1;
+                foreach ($image_array as $image_url) {
+                  $image_id = attachment_url_to_postid($image_url);
+                  echo wp_get_attachment_image($image_id, 'full', false, [
+                    'class' => $image_count === 1 ? 'BigPhoto' : 'SmallPhoto'
+                  ]);
+                  $image_count++;
+                }
+              } else {
+                foreach ($image_array as $image_url) {
+                  $image_id = attachment_url_to_postid($image_url);
+                  echo wp_get_attachment_image($image_id, 'full', false, [
+                    'class' => 'SmallPhoto'
+                  ]);
+                }
+              } ?>
+
             </div>
           </div>
           <div class="StandardPostMobile">
             <div class="swiper">
               <div class="swiper-wrapper">
-              <?php
-                foreach($image_array as $image) { ?>
-                <div class="swiper-slide">
-                  <img src="<?php echo $image ?>" class="BigPhoto">
-                </div>
+                <?php
+                foreach ($image_array as $image_url) {
+                  $image_id = attachment_url_to_postid($image_url);
+                ?>
+                  <div class="swiper-slide">
+                    <?php echo wp_get_attachment_image($image_id, 'full', false, [
+                      'class' => 'BigPhoto'
+                    ]); ?>
+                  </div>
                 <?php } ?>
               </div>
               <div class="swiper-pagination"></div>
@@ -233,7 +244,9 @@ get_template_directory_uri() . '/dist/assets/images';
       ?>
         <div class="LeftRightPost" id="<?php echo esc_attr($menu_anchor) ?>">
           <div class="LeftRightPostComp">
-            <img src="<?php echo $image_array[0] ?>" class="MainPhoto">
+            <?php echo wp_get_attachment_image(attachment_url_to_postid($image_array[0]), 'full', false, [
+              'class' => 'MainPhoto'
+            ]) ?>
             <div class="Desc">
               <h2><?php the_title() ?></h2>
               <div class="Text">
@@ -245,7 +258,7 @@ get_template_directory_uri() . '/dist/assets/images';
                 foreach ($bottom_prices as $key => $values) {
                   if (strpos($key, '_') !== 0) {
                     if ($key !== 'menu' && $key !== 'post_images' && $key !== 'apvc_active_counter' && $key !== 'count_start_from' && $key !== 'widget_label' && $key !== 'menu_anchor') {
-                      echo '<p class="Price">' . $key . ' ' . $values[0] . '&#x20bd;</p>';   
+                      echo '<p class="Price">' . $key . ' ' . $values[0] . '&#x20bd;</p>';
                     }
                   }
                 }
@@ -253,14 +266,12 @@ get_template_directory_uri() . '/dist/assets/images';
               ?>
             </div>
             <div class="SamePhotos">
-            <?php
-              $count = 0;
-                foreach($image_array as $image) { 
-                  if ($count !== 0) {
-                  ?>
-                  <img src="<?php echo $image ?>">
-                <?php } 
-              $count++;
+              <?php
+              foreach ($image_array as $index => $image_url) {
+                if ($index !== 0) {
+                  $image_id = attachment_url_to_postid($image_url);
+                  echo wp_get_attachment_image($image_id, 'full', false);
+                }
               } ?>
             </div>
           </div>
@@ -268,18 +279,21 @@ get_template_directory_uri() . '/dist/assets/images';
             <div class="swiper">
               <div class="swiper-wrapper">
               <?php
-                foreach($image_array as $image) { ?>
-                <div class="swiper-slide">
-                  <img src="<?php echo $image ?>" class="BigPhoto">
-                </div>
-                <?php } ?>
+                foreach ($image_array as $image_url) { 
+                  $image_id = attachment_url_to_postid($image_url); ?>
+                  <div class="swiper-slide">
+                    <?php  echo wp_get_attachment_image($image_id, 'full', false, [
+                    'class' => 'BigPhoto'
+                  ]) ?>
+                  </div>
+               <?php }?>
               </div>
               <div class="swiper-pagination"></div>
             </div>
           </div>
         </div>
       <?php
-      } 
+      }
       $index++; ?>
     <?php endwhile;
   else : ?>
@@ -294,14 +308,14 @@ get_template_directory_uri() . '/dist/assets/images';
   <div class="FeedbackMobile">
     <h3>Отзывы</h3>
     <div class=Photos>
-      <img src="<?php $img_Directory . '/f1.webp' ?>" alt="Брови, косметология, нижнее белье" />
-      <img src="<?php $img_Directory . '/f2.webp' ?>" alt="Брови, косметология, нижнее белье" />
-      <img src="<?php $img_Directory . '/f3.webp' ?>" alt="Брови, косметология, нижнее белье" />
-      <img src="<?php $img_Directory . '/f4.webp' ?>" alt="Брови, косметология, нижнее белье" />
-      <img src="<?php $img_Directory . '/f5.webp' ?>" alt="Брови, косметология, нижнее белье" />
-      <img src="<?php $img_Directory . '/f6.webp' ?>" alt="Брови, косметология, нижнее белье" />
-      <img src="<?php $img_Directory . '/f7.webp' ?>" alt="Брови, косметология, нижнее белье" />
-      <img src="<?php $img_Directory . '/f8.webp' ?>" alt="Брови, косметология, нижнее белье" />
+      <img src="<?php echo $img_Directory . '/f1.webp' ?>" alt="Брови, косметология, нижнее белье" />
+      <img src="<?php echo $img_Directory . '/f2.webp' ?>" alt="Брови, косметология, нижнее белье" />
+      <img src="<?php echo $img_Directory . '/f3.webp' ?>" alt="Брови, косметология, нижнее белье" />
+      <img src="<?php echo $img_Directory . '/f4.webp' ?>" alt="Брови, косметология, нижнее белье" />
+      <img src="<?php echo $img_Directory . '/f5.webp' ?>" alt="Брови, косметология, нижнее белье" />
+      <img src="<?php echo $img_Directory . '/f6.webp' ?>" alt="Брови, косметология, нижнее белье" />
+      <img src="<?php echo $img_Directory . '/f7.webp' ?>" alt="Брови, косметология, нижнее белье" />
+      <img src="<?php echo $img_Directory . '/f8.webp' ?>" alt="Брови, косметология, нижнее белье" />
     </div>
   </div>
   <div class="Contacts" id="contacts">
@@ -377,7 +391,6 @@ get_template_directory_uri() . '/dist/assets/images';
       </div>
     </div>
     <div class='Map'><?php echo do_shortcode('[wpgmza id="1"]') ?></div>
-    <!-- <iframe class='Map' src="https://yandex.ru/map-widget/v1/?um=constructor%3A22539b684133b5a1ca0278b4f5908c51dc6f2de5b5c7f473f1749a9fb4dc18e8&amp;source=constructor" width="721" height="556"></iframe> -->
   </div>
-  </main>
-  <?php get_footer() ?>
+</main>
+<?php get_footer() ?>
